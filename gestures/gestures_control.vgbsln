@@ -3,7 +3,7 @@
 	<SolutionFile>
 		<Header>
 			<Date>2018-05-03</Date>
-			<Time>16:47:29.9212718+01:00</Time>
+			<Time>17:02:35.2506737+01:00</Time>
 			<Version>1</Version>
 			<Type>Solution</Type>
 			<ID>df0c8ec2-bb06-46fd-8717-4644d2c9bf33</ID>
@@ -25,10 +25,10 @@
 						<File>skip.a.vgbproj</File>
 					</Items>
 					<Items>
-						<File>../../Kinect Studio/Repository/stop.vgbproj</File>
+						<File>stop.vgbproj</File>
 					</Items>
 					<Items>
-						<File>../../Kinect Studio/Repository/stop.a.vgbproj</File>
+						<File>stop.a.vgbproj</File>
 					</Items>
 					<Items>
 						<File>vdown.vgbproj</File>
