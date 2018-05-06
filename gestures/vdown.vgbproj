@@ -2,15 +2,20 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2018-05-03</Date>
-			<Time>16:38:17.7316100+01:00</Time>
+			<Date>2018-05-06</Date>
+			<Time>21:53:27.9350487+01:00</Time>
 			<Version>5</Version>
-			<Type>RFRProgress</Type>
+			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Training</Type>
-				<ProjectAttribute Name="vdown" Type="FLOAT" />
+				<ProjectAttribute Name="vdown" Type="BOOL" />
+				<ProjectAccompanyAttributes>
+					<Items Name="Confidence" Type="FLOAT" />
+					<Items Name="FirstFrameDetected" Type="BOOL" />
+				</ProjectAccompanyAttributes>
+				<DefaultTag xsi:type="BoolAttribute" Name="vdown" Value="false" />
 			</Function>
-			<ID>1c1825e2-da8a-48a6-a021-7064eccfec1b</ID>
+			<ID>269126cf-15d4-4435-9fbe-e2ccc4b11c45</ID>
 		</Header>
 		<Project_Data>
 			<Files>
@@ -24,11 +29,15 @@
 		</Project_Data>
 		<UI_State />
 		<Attributes>
-			<Items xsi:type="BoolAttribute" Name="Use Rotation Variant Feature" Value="false" />
-			<Items xsi:type="IntAttribute" Name="Number of Trees" Value="50" MaxValue="100" MinValue="1" />
-			<Items xsi:type="IntAttribute" Name="Max Tree Depth" Value="50" MaxValue="100" MinValue="10" />
-			<Items xsi:type="FloatAttribute" Name="Cluster Threshold" Value="0.3" MaxValue="1" MinValue="0" />
-			<Items xsi:type="FloatAttribute" Name="Weight Factor" Value="0.2" MinValue="0" />
+			<Items xsi:type="FloatAttribute" Name="Accuracy Level" Value="0.95" MaxValue="1" MinValue="0" />
+			<Items xsi:type="IntAttribute" Name="Number Weak Classifiers at Runtime" Value="1000" MinValue="0" />
+			<Items xsi:type="BoolAttribute" Name="Filter Results" Value="true" />
+			<Items xsi:type="BoolAttribute" Name="Auto Find Best Filtering Params" Value="true" />
+			<Items xsi:type="FloatAttribute" Name="Weight Of False Positives During Auto Find" Value="0.5" MaxValue="1" MinValue="0" />
+			<Items xsi:type="IntAttribute" Name="Manual Filter Params: Num Frames To Filter" Value="5" MaxValue="10" MinValue="1" />
+			<Items xsi:type="FloatAttribute" Name="Manual Filter Params: Threshold" Value="0.001" MaxValue="1" MinValue="0" />
+			<Items xsi:type="BoolAttribute" Name="Duplicate And Mirror Data During Training" Value="true" />
+			<Items xsi:type="IntAttribute" Name="% CPU For Training" Value="95" MaxValue="100" MinValue="1" />
 			<Items xsi:type="BoolAttribute" Name="Use Hands Data" Value="true" />
 			<Items xsi:type="BoolAttribute" Name="Ignore Left Arm" Value="false" />
 			<Items xsi:type="BoolAttribute" Name="Ignore Right Arm" Value="false" />

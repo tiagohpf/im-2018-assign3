@@ -2,15 +2,20 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2018-05-03</Date>
-			<Time>17:02:35.2311368+01:00</Time>
+			<Date>2018-05-06</Date>
+			<Time>21:49:32.7044824+01:00</Time>
 			<Version>5</Version>
-			<Type>RFRProgress</Type>
+			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Analysis</Type>
-				<ProjectAttribute Name="stop" Type="FLOAT" />
+				<ProjectAttribute Name="stop" Type="BOOL" />
+				<ProjectAccompanyAttributes>
+					<Items Name="Confidence" Type="FLOAT" />
+					<Items Name="FirstFrameDetected" Type="BOOL" />
+				</ProjectAccompanyAttributes>
+				<DefaultTag xsi:type="BoolAttribute" Name="stop" Value="false" />
 			</Function>
-			<ID>a22c8396-bb09-45ef-b4eb-ef9725e07a47</ID>
+			<ID>307f9d7a-68ef-4b25-a3c6-38cadc403e19</ID>
 		</Header>
 		<Project_Data>
 			<Files>
