@@ -10,11 +10,15 @@
         Properties are stored/updated for display in the UI. */
     public sealed class GestureResultView : INotifyPropertyChanged
     {
-        // Image to show when the 'detected' property is true for a tracked body
-        private readonly ImageSource seatedImage = new BitmapImage(new Uri(@"Images\Seated.png", UriKind.Relative));
+        // Images for detector
+        private readonly ImageSource stopImage = new BitmapImage(new Uri(@"Images\Pause.png", UriKind.Relative));
+        private readonly ImageSource skipImage = new BitmapImage(new Uri(@"Images\Skip.png", UriKind.Relative));
+        private readonly ImageSource backImage = new BitmapImage(new Uri(@"Images\Back.png", UriKind.Relative));
+        private readonly ImageSource vupImage = new BitmapImage(new Uri(@"Images\Volume Up.png", UriKind.Relative));
+        private readonly ImageSource vdownImage = new BitmapImage(new Uri(@"Images\Volume Down.png", UriKind.Relative));
 
         // Image to show when the 'detected' property is false for a tracked body
-        private readonly ImageSource notSeatedImage = new BitmapImage(new Uri(@"Images\NotSeated.png", UriKind.Relative));
+        private readonly ImageSource notDetectedImage = new BitmapImage(new Uri(@"Images\None.png", UriKind.Relative));
 
         // Image to show when the body associated with the GestureResultView object is not being tracked
         private readonly ImageSource notTrackedImage = new BitmapImage(new Uri(@"Images\NotTracked.png", UriKind.Relative));
@@ -47,7 +51,7 @@
             IsTracked = isTracked;
             Detected = detected;
             Confidence = confidence;
-            ImageSource = this.notTrackedImage;
+            ImageSource = notTrackedImage;
         }
 
         // INotifyPropertyChangedPropertyChanged event to allow window controls to bind to changeable data
@@ -162,7 +166,8 @@
         }
 
         // Update the values associated with the discrete gesture detection result
-        public void UpdateGestureResult(bool isBodyTrackingIdValid, bool isGestureDetected, float detectionConfidence)
+        public void UpdateGestureResult(bool isBodyTrackingIdValid, bool anyGestureDetected, bool stopDetected, bool skipDetected, 
+                                        bool backDetected, bool vupDetected, bool vdownDetected, float detectionConfidence)
         {
             IsTracked = isBodyTrackingIdValid;
             Confidence = 0.0f;
@@ -175,17 +180,36 @@
             }
             else
             {
-                Detected = isGestureDetected;
+                Detected = anyGestureDetected;
                 BodyColor = trackedColors[BodyIndex];
 
                 if (Detected)
                 {
                     Confidence = detectionConfidence;
-                    ImageSource = seatedImage;
+                    if (stopDetected)
+                    {
+                        ImageSource = stopImage;
+                    }
+                    else if (skipDetected)
+                    {
+                        ImageSource = skipImage;
+                    }
+                    else if (backDetected)
+                    {
+                        ImageSource = backImage;
+                    }
+                    else if (vupDetected)
+                    {
+                        ImageSource = vupImage;
+                    }
+                    else if (vdownDetected)
+                    {
+                        ImageSource = vdownImage;
+                    }
                 }
                 else
                 {
-                    ImageSource = notSeatedImage;
+                    ImageSource = notDetectedImage;
                 }
             }
         }

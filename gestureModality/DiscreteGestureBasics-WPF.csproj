@@ -145,11 +145,20 @@
     <Resource Include="Images\Kinect.ico" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Status.png" />
-    <Resource Include="Images\NotSeated.png" />
     <Resource Include="Images\NotTracked.png" />
-    <Resource Include="Images\Seated.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Back.png" />
+    <Resource Include="Images\Skip.png" />
+    <Resource Include="Images\Volume Down.png" />
+    <Resource Include="Images\Volume Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\None.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pause.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\vgbtechs" "$(TargetDir)\vgbtechs" /S /R /Y /I</PostBuildEvent>

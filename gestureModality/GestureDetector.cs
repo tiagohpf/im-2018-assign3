@@ -64,7 +64,7 @@
             {
                 foreach (Gesture gesture in database.AvailableGestures)
                 {
-                    if (gesture.Name.Equals(stop) || gesture.Name.Equals(back) || gesture.Name.Equals(skip) 
+                    if (gesture.Name.Equals(stop) || gesture.Name.Equals(back) || gesture.Name.Equals(skip)
                         || gesture.Name.Equals(vdown) || gesture.Name.Equals(vup))
                     {
                         vgbFrameSource.AddGesture(gesture);
@@ -144,10 +144,15 @@
         private void Reader_GestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
             VisualGestureBuilderFrameReference frameReference = e.FrameReference;
-            using (var frame = this.vgbFrameReader.CalculateAndAcquireLatestFrame())
+            using (var frame = vgbFrameReader.CalculateAndAcquireLatestFrame())
             {
+                bool anyGestureDetected = false;
                 bool stopDetected = false;
-                float confidence = 0;
+                bool skipDetected = false;
+                bool backDetected = false;
+                bool vupDetected = false;
+                bool vdownDetected = false;
+                float progress = 0;
 
                 if (frame != null)
                 {
@@ -167,7 +172,7 @@
                                 if (result != null)
                                 {
                                     Console.WriteLine("Discrete Gesture");
-                                    stopDetected = false;
+                                    anyGestureDetected = false;
                                 }
                             }
                         }
@@ -185,40 +190,66 @@
 
                                 if (result != null)
                                 {
-                                    confidence = result.Progress;
-                                    if (confidence >= 1)
+                                    progress = result.Progress;
+                                    if (progress >= 1)
                                     {
                                         if (gesture.Name.Equals(stop))
                                         {
-                                            sendMessage("PAUSE", confidence);
+                                            sendMessage("PAUSE", progress);
+                                            anyGestureDetected = true;
                                             stopDetected = true;
+                                            skipDetected = false;
+                                            backDetected = false;
+                                            vupDetected = false;
+                                            vdownDetected = false;
                                         }
                                         else if (gesture.Name.Equals(skip))
                                         {
-                                            sendMessage("SKIP", confidence);
+                                            sendMessage("SKIP", progress);
+                                            anyGestureDetected = true;
                                             stopDetected = false;
+                                            skipDetected = true;
+                                            backDetected = false;
+                                            vupDetected = false;
+                                            vdownDetected = false;
                                         }
                                         else if (gesture.Name.Equals(back))
                                         {
-                                            sendMessage("BACK", confidence);
+                                            sendMessage("BACK", progress);
+                                            anyGestureDetected = true;
                                             stopDetected = false;
-                                        }
-                                        else if (gesture.Name.Equals(vdown))
-                                        {
-                                            sendMessage("VDOWN", confidence);
-                                            stopDetected = false;
+                                            skipDetected = false;
+                                            backDetected = true;
+                                            vupDetected = false;
+                                            vdownDetected = false;
                                         }
                                         else if (gesture.Name.Equals(vup))
                                         {
-                                            sendMessage("VUP", confidence);
+                                            sendMessage("VUP", progress);
+                                            anyGestureDetected = true;
                                             stopDetected = false;
+                                            skipDetected = false;
+                                            backDetected = false;
+                                            vupDetected = true;
+                                            vdownDetected = false;
+                                        }
+                                        else if (gesture.Name.Equals(vdown))
+                                        {
+                                            sendMessage("VDOWN", progress);
+                                            anyGestureDetected = true;
+                                            stopDetected = false;
+                                            skipDetected = false;
+                                            backDetected = true;
+                                            vupDetected = false;
+                                            vdownDetected = true;
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    GestureResultView.UpdateGestureResult(true, stopDetected, confidence);
+                    GestureResultView.UpdateGestureResult(true, anyGestureDetected, stopDetected, skipDetected,
+                                                            backDetected, vupDetected, vdownDetected, progress);
                 }
             }
         }
@@ -227,7 +258,7 @@
         private void Source_TrackingIdLost(object sender, TrackingIdLostEventArgs e)
         {
             // Update the GestureResultView object to show the 'Not Tracked' image in the UI
-            GestureResultView.UpdateGestureResult(false, false, 0.0f);
+            GestureResultView.UpdateGestureResult(false, false, false, false, false, false, false, 0.0f);
         }
 
         // Send JSON message indicating the parameters in use
