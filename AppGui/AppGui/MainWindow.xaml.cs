@@ -113,6 +113,7 @@ namespace AppGui
                         spotify.Previous();
                         break;
                     case "VDOWN":
+                        Console.WriteLine("VDOWN");
                         volume = spotify.GetSpotifyVolume();
                         if (volume - 25 >= 0)
                             spotify.SetSpotifyVolume(volume - 25);
@@ -120,6 +121,7 @@ namespace AppGui
                             spotify.SetSpotifyVolume(0);
                         break;
                     case "VUP":
+                        Console.WriteLine("VUP");
                         volume = spotify.GetSpotifyVolume();
                         if (volume + 25 <= 100)
                             spotify.SetSpotifyVolume(volume + 25);
