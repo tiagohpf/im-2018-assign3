@@ -26,6 +26,8 @@
         // Gesture frame reader which will handle gesture events coming from the sensor
         private VisualGestureBuilderFrameReader vgbFrameReader = null;
 
+        private int count;
+
         // Initializes a new instance of the GestureDetector class along with the gesture frame source and reader
         public GestureDetector(KinectSensor kinectSensor, GestureResultView gestureResultView)
         {
@@ -34,6 +36,7 @@
             //mmic = new MmiCommunication("localhost",9876,"User1", "ASR");  //PORT TO FUSION - uncomment this line to work with fusion later
             mmic = new MmiCommunication("localhost", 8000, "User1", "GESTURES"); // MmiCommunication(string IMhost, int portIM, string UserOD, string thisModalityName)
             mmic.Send(lce.NewContextRequest());
+            count = 0;
 
             if (kinectSensor == null)
             {
@@ -60,7 +63,7 @@
             }
 
             // Load gestures from database
-            using (VisualGestureBuilderDatabase database = new VisualGestureBuilderDatabase(this.gestureDatabase))
+            using (VisualGestureBuilderDatabase database = new VisualGestureBuilderDatabase(gestureDatabase))
             {
                 foreach (Gesture gesture in database.AvailableGestures)
                 {
@@ -191,62 +194,68 @@
                                 if (result != null)
                                 {
                                     progress = result.Progress;
-                                    if (progress >= 1)
-                                    {
-                                        if (gesture.Name.Equals(stop))
+                                        if (progress >= 1)
                                         {
-                                            sendMessage("PAUSE", progress);
-                                            anyGestureDetected = true;
-                                            stopDetected = true;
-                                            skipDetected = false;
-                                            backDetected = false;
-                                            vupDetected = false;
-                                            vdownDetected = false;
+                                        count++;
+                                        if(count != 15)
+                                        {
+                                            return;
                                         }
-                                        else if (gesture.Name.Equals(skip))
-                                        {
-                                            sendMessage("SKIP", progress);
-                                            anyGestureDetected = true;
-                                            stopDetected = false;
-                                            skipDetected = true;
-                                            backDetected = false;
-                                            vupDetected = false;
-                                            vdownDetected = false;
-                                        }
-                                        else if (gesture.Name.Equals(back))
-                                        {
-                                            sendMessage("BACK", progress);
-                                            anyGestureDetected = true;
-                                            stopDetected = false;
-                                            skipDetected = false;
-                                            backDetected = true;
-                                            vupDetected = false;
-                                            vdownDetected = false;
-                                        }
-                                        else if (gesture.Name.Equals(vup))
-                                        {
-                                            sendMessage("VUP", progress);
-                                            anyGestureDetected = true;
-                                            stopDetected = false;
-                                            skipDetected = false;
-                                            backDetected = false;
-                                            vupDetected = true;
-                                            vdownDetected = false;
-                                        }
-                                        else if (gesture.Name.Equals(vdown))
-                                        {
-                                            sendMessage("VDOWN", progress);
-                                            anyGestureDetected = true;
-                                            stopDetected = false;
-                                            skipDetected = false;
-                                            backDetected = true;
-                                            vupDetected = false;
-                                            vdownDetected = true;
+                                        count = 0;
+                                            if (gesture.Name.Equals(stop))
+                                            {
+                                                sendMessage("PAUSE", progress);
+                                                anyGestureDetected = true;
+                                                stopDetected = true;
+                                                skipDetected = false;
+                                                backDetected = false;
+                                                vupDetected = false;
+                                                vdownDetected = false;
+                                            }
+                                            else if (gesture.Name.Equals(skip))
+                                            {
+                                                sendMessage("BACK", progress);
+                                                anyGestureDetected = true;
+                                                stopDetected = false;
+                                                skipDetected = true;
+                                                backDetected = false;
+                                                vupDetected = false;
+                                                vdownDetected = false;
+                                            }
+                                            else if (gesture.Name.Equals(back))
+                                            {
+                                                sendMessage("SKIP", progress);
+                                                anyGestureDetected = true;
+                                                stopDetected = false;
+                                                skipDetected = false;
+                                                backDetected = true;
+                                                vupDetected = false;
+                                                vdownDetected = false;
+                                            }
+                                            else if (gesture.Name.Equals(vup))
+                                            {
+                                                sendMessage("VUP", progress);
+                                                anyGestureDetected = true;
+                                                stopDetected = false;
+                                                skipDetected = false;
+                                                backDetected = false;
+                                                vupDetected = true;
+                                                vdownDetected = false;
+                                            }
+                                            else if (gesture.Name.Equals(vdown))
+                                            {
+                                                sendMessage("VDOWN", progress);
+                                                anyGestureDetected = true;
+                                                stopDetected = false;
+                                                skipDetected = false;
+                                                backDetected = true;
+                                                vupDetected = false;
+                                                vdownDetected = true;
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
                     }
                     GestureResultView.UpdateGestureResult(true, anyGestureDetected, stopDetected, skipDetected,
                                                             backDetected, vupDetected, vdownDetected, progress);

@@ -192,11 +192,11 @@
                     }
                     else if (skipDetected)
                     {
-                        ImageSource = skipImage;
+                        ImageSource = backImage;
                     }
                     else if (backDetected)
                     {
-                        ImageSource = backImage;
+                        ImageSource = skipImage;
                     }
                     else if (vupDetected)
                     {

@@ -129,6 +129,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Database\gestures.gbd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Database\spotify_gestures.gbd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
