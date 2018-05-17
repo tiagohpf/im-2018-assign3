@@ -163,6 +163,13 @@
   <ItemGroup>
     <Resource Include="Images\Pause.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back_gesture.jpg" />
+    <Resource Include="Images\skip_gesture.jpg" />
+    <Resource Include="Images\stop_gesture.jpg" />
+    <Resource Include="Images\vdown_gesture.jpg" />
+    <Resource Include="Images\vup_gesture.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\vgbtechs" "$(TargetDir)\vgbtechs" /S /R /Y /I</PostBuildEvent>
