@@ -123,6 +123,7 @@ namespace AppGui
                     case "VUP":
                         Console.WriteLine("VUP");
                         volume = spotify.GetSpotifyVolume();
+                        //MessageBox.Show(volume.ToString());
                         if (volume + 25 <= 100)
                             spotify.SetSpotifyVolume(volume + 25);
                         else

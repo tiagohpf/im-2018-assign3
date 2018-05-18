@@ -248,7 +248,7 @@
                                                 anyGestureDetected = true;
                                                 stopDetected = false;
                                                 skipDetected = false;
-                                                backDetected = true;
+                                                backDetected = false;
                                                 vupDetected = false;
                                                 vdownDetected = true;
                                             }
