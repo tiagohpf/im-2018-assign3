@@ -8,7 +8,7 @@
         Title="Spotify Voice Controller" Height="169.052" Width="240.116">
     <Grid>
         <Label
-            Content="Spotify Voice Controller" FontSize="15" FontFamily="Montserrat" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            Content="Spotify Controller" FontSize="15" FontFamily="Montserrat" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Image Source="spotify-logo.png" Margin="182,60,10,41" RenderTransformOrigin="2.922,1.876">
             <Image.RenderTransform>
                 <TransformGroup>

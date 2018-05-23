@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Microsoft.Samples.Kinect.DiscreteGestureBasics"
         Title="Kinect Gestures"
-        Height="650" Width="900"
+        Height="700" Width="700"
         Closing="MainWindow_Closing">
     <Window.Resources>
         <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e" />
@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Source="Images\Logo.png" HorizontalAlignment="Left" Stretch="Fill" Height="32" Width="81" Margin="0 10 0 5" />
-        <TextBlock Grid.Row="0" Margin="0 0 -1 0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Discrete Gesture Basics</TextBlock>
+        <TextBlock Grid.Row="0" Margin="0 0 -1 0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinect Gesture Basics</TextBlock>
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="0 0 0 5" />
 
         <Grid x:Name="contentGrid" Grid.Row="1" >
@@ -50,22 +50,21 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.RowSpan="3" Margin="20 10 0 10" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.RowSpan="3" Margin="20 5 0 10" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Viewbox x:Name="kinectBodyViewbox">
-                    <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
+                    <Image Source="{Binding ImageSource}" Stretch="Fill" />
                 </Viewbox>
-                <TextBlock Text="This program can track up to 6 people simultaneously. Stand in front of the sensor to get tracked. Sit down to trigger the 'Seated' gesture." TextWrapping="Wrap" Margin="5 10 5 5" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="14"/>
-                <Grid Margin="0 20">
+                <TextBlock Text="Gestures" FontFamily="Segoe UI" FontSize="16" HorizontalAlignment="Center" Margin="0 15"/>
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Content="Back" HorizontalAlignment="Center"></Label>
                     <Image Source="Images/back_gesture.jpg" Margin="0 20"></Image>
@@ -75,8 +74,8 @@
                     <Image Source="Images/vup_gesture.jpg" Grid.Row="1" Margin="0 20"></Image>
                     <Label Content="Volume Down" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center"></Label>
                     <Image Source="Images/vdown_gesture.jpg" Grid.Row="1" Grid.Column="2"></Image>
-                    <Label Content="Stop" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"></Label>
-                    <Image Source="Images/stop_gesture.jpg" Grid.Row="2" Grid.Column="1" Margin="0 20"></Image>
+                    <Label Content="Stop" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"></Label>
+                    <Image Source="Images/stop_gesture.jpg" Grid.Row="1" Grid.Column="1" Margin="0 20"></Image>
                 </Grid>
             </StackPanel>
             
