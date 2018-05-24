@@ -62,6 +62,7 @@ namespace AppGui
 
         public void MmiC_Message(object sender, MmiEventArgs e)
         {
+            spotify.SetSpotifyVolume(100);
             Console.WriteLine(e.Message);
             var doc = XDocument.Parse(e.Message);
             var com = doc.Descendants("command").FirstOrDefault().Value;
