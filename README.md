@@ -22,7 +22,7 @@ java -jar mmiframeworkV2
 ```
 2. Connect the **Kinect**
 3. Open **Spotify**
-4. Open and run all the three Visual Studio projects: **AppGui** and **gestureModality** 
+4. Open and run the two Visual Studio projects: **AppGui** and **gestureModality** 
 
 ## Login
 
